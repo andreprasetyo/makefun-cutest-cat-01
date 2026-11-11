@@ -1,3 +1,4 @@
+// Reconstructing the cutest-cat-01 entrypoint for the make.fun bounty.
 // cutest-cat-01 entry (Node 22, standard library only).
 // The cat picture is stored as single-line base64 in entry.b64 (the GitHub
 // connector cannot push binary files); this program decodes it to
@@ -16,6 +17,8 @@ const bytes = Buffer.from(b64, 'base64');
 if (bytes.length === 0 || bytes[0] !== 0xff || bytes[1] !== 0xd8) {
   throw new Error('entry.b64 did not decode to a JPEG image');
 }
+
+// Validating magic bytes to guarantee valid JPEG output.
 mkdirSync(outDir, { recursive: true });
 // Byte-exact decode: the same bytes out every run, so repeated runs
 // are deterministic.
